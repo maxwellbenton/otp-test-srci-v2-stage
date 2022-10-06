@@ -40,6 +40,22 @@ async function init() {
   })
 }
 
+async function initMerchantJS() {
+  const merchJsScript = document.createElement('script')
+  merchJsScript.src = 'https://sandbox.src.mastercard.com/srci/merchant/merchant.js?checkoutid=ca1faacf4d734247be5fce22d0270421'
+  await document.body.appendChild(merchJsScript)
+  merchJsScript.addEventListener('load', async function() {
+    window.masterpass.checkout({
+      allowedCardTypes: ['master', 'visa'],
+      amount: '150',
+      currency: 'USD',
+      checkoutId: 'ca1faacf4d734247be5fce22d0270421',
+      displayLanguage: 'en_US',
+      cartId: '506610f5-6858-4147-9ec2-b030f1337a7d'
+    })
+  })
+}
+
 function updateCardBrands(event) {
   state.cardBrands = event.target.value.split(',')
   document.querySelector('src-mark').cardBrands = state.cardBrands
@@ -79,12 +95,19 @@ function removeAllSettled() {
   await customElements.whenDefined('src-mark')
   const mark = document.querySelector('src-mark')
   mark.cardBrands = state.cardBrands
+
+  await customElements.whenDefined('src-button')
+  const srcButton = document.querySelector('src-button')
+  srcButton.cardBrands = state.cardBrands
+
   cardBrandsInput = document.querySelector('#cardBrands')
   cardBrandsInput.value = state.cardBrands
   emailInput = document.querySelector('#email')
   emailInput.value = state.email
   cardBrandsInput.addEventListener('input', updateCardBrands)
   document.querySelector('button').addEventListener('click', removeAllSettled)
+
   mark.addEventListener('click', init)
+  srcButton.addEventListener('click', initMerchantJS)
 })()
 

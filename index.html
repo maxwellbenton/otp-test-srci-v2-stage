@@ -16,7 +16,6 @@
 </head>
 <body>
   <script type="module" src="https://sandbox.src.mastercard.com/srci/integration/components/src-ui-kit/src-ui-kit.esm.js"></script>
-  <!-- <script src="https://sandbox.src.mastercard.com/srci/integration/2/lib.js"></script> -->
   <script src="otp-script.js"></script>
   <main>
     <div>
@@ -27,7 +26,15 @@
     </div>
     <button id="#removeAllSettled">Remove Promise.allSettled</button>
     <div>
-      <src-mark />
+      <div> 
+        <p>LibJS</p>
+        <src-mark />
+      </div>
+      <br />
+      <div> 
+        <p>MerchantJS</p>
+        <src-button />
+      </div>
     </div>
   </main>
 </body>
