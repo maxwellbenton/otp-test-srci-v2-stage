@@ -5,34 +5,43 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    main {
+    .flex {
       display: flex;
       flex-flow: column;
-      justify-content: center;
       align-items: center;
+      padding: 1em;
+    }
+
+    body {
+      background-color: rgb(26, 18, 45);
+      background-image: url('ship-small.png');
+      background-repeat: no-repeat;
+      background-position: center; 
     }
   </style>
-  <title>OTP Input</title>
+  <title>Pirate Merchant</title>
 </head>
 <body>
   <script type="module" src="https://sandbox.src.mastercard.com/srci/integration/components/src-ui-kit/src-ui-kit.esm.js"></script>
   <script src="otp-script.js"></script>
-  <main>
-    <div>
-      <label for="cardBrands">Card Brands</label>
-      <input type="text" id="cardBrands"></input>
-      <label for="email">Email</label>
-      <input type="email" id="email"></input>
+  <main class="flex">
+    <div class="flex">
+      <div>
+        <input type="text" id="cardBrands" placeholder="Comma-separated string of card brands"></input>
+      </div>
+      <div>
+        <input type="email" id="email" placeholder="Email for idLookup"></input>
+      </div>
     </div>
     <button id="#removeAllSettled">Remove Promise.allSettled</button>
     <div>
-      <div> 
-        <p>LibJS</p>
-        <src-mark />
+      <div class="flex"> 
+        <p>Lib JS</p>
+        <src-mark dark/>
       </div>
       <br />
-      <div> 
-        <p>MerchantJS</p>
+      <div class="flex"> 
+        <p>Merchant JS</p>
         <src-button card-brands='mastercard,visa,discover,amex' />
       </div>
     </div>

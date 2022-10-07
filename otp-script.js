@@ -1,5 +1,5 @@
 const state = {
-  cardBrands: ['mastercard']
+  cardBrands: ['mastercard','visa']
 }
 
 async function init() {
@@ -111,9 +111,8 @@ function removeAllSettled() {
   const masterpassButton = document.querySelector('src-button')
 
   cardBrandsInput = document.querySelector('#cardBrands')
-  cardBrandsInput.value = state.cardBrands.join('')
+  cardBrandsInput.value = state.cardBrands.join(',')
   emailInput = document.querySelector('#email')
-  emailInput.value = 'yara@mailinator.com'
   cardBrandsInput.addEventListener('input', updateCardBrands)
   document.querySelector('button').addEventListener('click', removeAllSettled)
 
