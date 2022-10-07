@@ -19,21 +19,29 @@ async function init() {
         dpaLocale: 'en_US',
         cardBrands: state.cardBrands
       }))
-      try { console.log(await c2p.getCards()) } catch(e) {}
-      console.log(await c2p.idLookup({ email: state.email }))
+      const cards = await c2p.getCards()
+      if(cards.length) {
+        otpInput.remove()
+        const cardList = document.createElement('src-card-list')
+        customElements.whenDefined('src-card-list')
+        cardList.loadCards(cards)
+        cardList.cardBrands = state.cardBrands
+        document.body.appendChild(cardList)
+      } else {
+        console.log(await c2p.idLookup({ email: state.email }))
+        try { await c2p.initiateValidation() } catch(e) { console.log(e)}
 
-      try { await c2p.initiateValidation() } catch(e) { console.log(e)}
-
-      const otpInput = document.createElement('src-otp-input')
-      await customElements.whenDefined('src-otp-input')
-      otpInput.cardBrands = state.cardBrands
-      otpInput.displayHeader = true
-      otpInput.type = "overlay"
-      otpInput.addEventListener('otpChanged', (event) => {
-        handleOTP(event, c2p, otpInput)
-      })
-      otpInput.addEventListener('input', console.log)
-      document.body.appendChild(otpInput)
+        const otpInput = document.createElement('src-otp-input')
+        await customElements.whenDefined('src-otp-input')
+        otpInput.cardBrands = state.cardBrands
+        otpInput.displayHeader = true
+        otpInput.type = "overlay"
+        otpInput.addEventListener('otpChanged', (event) => {
+          handleOTP(event, c2p, otpInput)
+        })
+        otpInput.addEventListener('input', console.log)
+        document.body.appendChild(otpInput)
+      }
     } catch (e) {
       console.log(e)
     }
