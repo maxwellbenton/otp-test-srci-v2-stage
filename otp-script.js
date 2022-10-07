@@ -21,7 +21,6 @@ async function init() {
       }))
       const cards = await c2p.getCards()
       if(cards.length) {
-        otpInput.remove()
         const cardList = document.createElement('src-card-list')
         customElements.whenDefined('src-card-list')
         cardList.loadCards(cards)
