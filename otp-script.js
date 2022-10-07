@@ -1,6 +1,5 @@
 const state = {
-  cardBrands: ['mastercard'],
-  email: 'annebonny@mailinator.com'
+  cardBrands: ['mastercard']
 }
 
 async function init() {
@@ -27,8 +26,13 @@ async function init() {
         cardList.cardBrands = state.cardBrands
         document.body.appendChild(cardList)
       } else {
-        console.log(await c2p.idLookup({ email: state.email }))
-        try { await c2p.initiateValidation() } catch(e) { console.log(e)}
+        const lookupResult = await c2p.idLookup({ email: document.querySelector('#email').value })
+        console.log(lookupResult)
+        if(!lookupResult.consumerPresent) {
+          console.warn('account not found')
+        }
+
+        await c2p.initiateValidation()
 
         const otpInput = document.createElement('src-otp-input')
         await customElements.whenDefined('src-otp-input')
@@ -72,10 +76,6 @@ function updateCardBrands(event) {
   document.querySelector('src-button').cardBrands = state.cardBrands
 }
 
-function updateEmail(event) {
-  state.email = event.target.value
-}
-
 async function handleOTP(event, c2p, otpInput) {
   try {
     const cards = await c2p.validate({ value: event.detail })
@@ -113,7 +113,7 @@ function removeAllSettled() {
   cardBrandsInput = document.querySelector('#cardBrands')
   cardBrandsInput.value = state.cardBrands.join('')
   emailInput = document.querySelector('#email')
-  emailInput.value = state.email
+  emailInput.value = 'bonny@mailinator.com'
   cardBrandsInput.addEventListener('input', updateCardBrands)
   document.querySelector('button').addEventListener('click', removeAllSettled)
 
