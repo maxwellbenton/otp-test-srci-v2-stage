@@ -1,6 +1,6 @@
 const state = {
   cardBrands: ['mastercard'],
-  email: 'mbmc@mailinator.com'
+  email: 'annebonny@mailinator.com'
 }
 
 async function init() {
@@ -14,12 +14,12 @@ async function init() {
       console.log(await c2p.init({
         srcDpaId: 'b756a2b0-ef62-4c62-a6de-f72e75ce5f17',
         dpaData: {
-          dpaName: 'SparkTmerch'
+          dpaName: 'Yara Greyjoy'
         },
         dpaLocale: 'en_US',
         cardBrands: state.cardBrands
       }))
-
+      try { console.log(await c2p.getCards()) } catch(e) {}
       console.log(await c2p.idLookup({ email: state.email }))
 
       try { await c2p.initiateValidation() } catch(e) { console.log(e)}
@@ -46,12 +46,15 @@ async function initMerchantJS() {
   await document.body.appendChild(merchJsScript)
   merchJsScript.addEventListener('load', async function() {
     window.masterpass.checkout({
-      allowedCardTypes: ['master', 'visa'],
+      allowedCardTypes: ['master,amex,diners,discover,jcb,maestro,visa'],
       amount: '150',
       currency: 'USD',
       checkoutId: 'ca1faacf4d734247be5fce22d0270421',
       displayLanguage: 'en_US',
-      cartId: '506610f5-6858-4147-9ec2-b030f1337a7d'
+      cartId: '506610f5-6858-4147-9ec2-b030f1337a7d',
+      shippingLocationProfile: 'US',
+      suppress3Ds: true,
+      suppressShippingAddress: true
     })
   })
 }
@@ -59,6 +62,7 @@ async function initMerchantJS() {
 function updateCardBrands(event) {
   state.cardBrands = event.target.value.split(',')
   document.querySelector('src-mark').cardBrands = state.cardBrands
+  document.querySelector('src-button').cardBrands = state.cardBrands
 }
 
 function updateEmail(event) {
@@ -97,17 +101,16 @@ function removeAllSettled() {
   mark.cardBrands = state.cardBrands
 
   await customElements.whenDefined('src-button')
-  const srcButton = document.querySelector('src-button')
-  srcButton.cardBrands = state.cardBrands
+  const masterpassButton = document.querySelector('src-button')
 
   cardBrandsInput = document.querySelector('#cardBrands')
-  cardBrandsInput.value = state.cardBrands
+  cardBrandsInput.value = state.cardBrands.join('')
   emailInput = document.querySelector('#email')
   emailInput.value = state.email
   cardBrandsInput.addEventListener('input', updateCardBrands)
   document.querySelector('button').addEventListener('click', removeAllSettled)
 
   mark.addEventListener('click', init)
-  srcButton.addEventListener('click', initMerchantJS)
+  masterpassButton.addEventListener('click', initMerchantJS)
 })()
 
