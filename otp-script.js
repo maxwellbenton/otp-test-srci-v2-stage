@@ -113,7 +113,7 @@ function removeAllSettled() {
   cardBrandsInput = document.querySelector('#cardBrands')
   cardBrandsInput.value = state.cardBrands.join('')
   emailInput = document.querySelector('#email')
-  emailInput.value = 'bonny@mailinator.com'
+  emailInput.value = 'yara@mailinator.com'
   cardBrandsInput.addEventListener('input', updateCardBrands)
   document.querySelector('button').addEventListener('click', removeAllSettled)
 
