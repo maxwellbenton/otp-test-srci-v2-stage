@@ -39,6 +39,9 @@ async function init() {
         otpInput.cardBrands = state.cardBrands
         otpInput.displayHeader = true
         otpInput.type = "overlay"
+        try {
+          otpInput.shadowRoot.querySelector('.al-input--code__fields').setAttribute("autocomplete", "one-time-code")
+        } catch (e) { console.error(e) }
         otpInput.addEventListener('otpChanged', (event) => {
           handleOTP(event, c2p, otpInput)
         })
