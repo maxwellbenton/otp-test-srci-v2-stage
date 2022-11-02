@@ -41,9 +41,9 @@ async function init() {
         otpInput.type = "overlay"
         try {
           console.warn(otpInput.shadowRoot)
-          console.warn(otpInput.shadowRoot.querySelectorAll('input'))
-          console.warn(otpInput.querySelector('.al-input--code__fields'))
-          otpInput.shadowRoot.querySelector('.al-input--code__fields').setAttribute("autocomplete", "one-time-code")
+          console.warn(otpInput.shadowRoot.querySelector('sal-code-input'))
+          console.warn(otpInput.shadowRoot.querySelector('sal-code-input').shadowRoot..querySelector('.al-input--code__fields'))
+          otpInput.shadowRoot.querySelector('sal-code-input').shadowRoot..querySelector('.al-input--code__fields').setAttribute("autocomplete", "one-time-code")
         } catch (e) { console.error(e) }
         otpInput.addEventListener('otpChanged', (event) => {
           handleOTP(event, c2p, otpInput)
