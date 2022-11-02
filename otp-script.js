@@ -41,6 +41,9 @@ async function init() {
         otpInput.type = "overlay"
         try {
           const otpShadow = otpInput.shadowRoot
+          console.warn(document.querySelector('src-otp-input').shadowRoot)
+          console.warn(document.querySelector('src-otp-input').shadowRoot.querySelector('sal-code-input'))
+          console.warn(ocument.querySelector('src-otp-input').shadowRoot.querySelector('sal-code-input').shadowRoot)
           console.warn(document.querySelector('src-otp-input').shadowRoot.querySelector('sal-code-input').shadowRoot.querySelector('.al-input--code__fields'))
           const salInputShadow = otpShadow.querySelector('sal-code-input')
           console.warn(salInputShadow.querySelector('.al-input--code__fields'))
