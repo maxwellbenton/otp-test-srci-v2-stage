@@ -40,6 +40,9 @@ async function init() {
         otpInput.displayHeader = true
         otpInput.type = "overlay"
         try {
+          console.warn(otpInput.shadowRoot)
+          console.warn(otpInput.shadowRoot.querySelector('.al-input--code__fields'))
+          console.warn(otpInput.querySelector('.al-input--code__fields'))
           otpInput.shadowRoot.querySelector('.al-input--code__fields').setAttribute("autocomplete", "one-time-code")
         } catch (e) { console.error(e) }
         otpInput.addEventListener('otpChanged', (event) => {
