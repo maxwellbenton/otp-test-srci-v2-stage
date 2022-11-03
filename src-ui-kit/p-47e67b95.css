@@ -1,0 +1,57 @@
+ /*
+ * "global" style - required in consumer (merchant) DOM
+ *
+ * included in stencil.config.ts:
+ *    globalStyle: 'src/style.scss'
+ *
+ * builds as: dist/src-ui-kit/src-ui-kit.css
+ */
+src-card {
+  --src-card-preview-margin-bottom: 0;
+  --src-radio-group-margin-bottom: 0;
+  --src-radio-item-label-padding-left: 0;
+  --src-radio-item-label-padding-right: 0;
+  --src-radio-item-label-padding-top: calc(var(--src-radio-item-padding));
+  --src-card-art-width: 54px;
+  --src-card-art-height: 34px;
+  --src-card-preview-brand-font-color: #141413;
+  --src-card-preview-brand-font-size: 1rem;
+  --src-card-preview-number-font-color: #777470;
+  --src-card-preview-subtext-font-size: .8125rem;
+  --src-card-preview-number-font-size: .8125rem;
+  --src-card-preview-subtext-color: #777470;
+  --src-card-preview-error-color: #D22A2F;
+  --src-card-preview-error-font-size: .8125rem;
+  --src-color-foreground: #141413;
+  --src-radio-item-icon-border-color-checked: #141413;
+  --src-z-index-midground-mid: 0;
+}
+
+src-card[dark] {
+  --src-card-preview-brand-font-color: #FFFFFF;
+  --src-card-preview-number-font-color: #E6E6E6;
+  --src-card-preview-subtext-color: #E6E6E6;
+  --src-card-preview-error-color: #FF6A73;
+  --src-color-foreground: #FFFFFF;
+  --src-radio-item-icon-border-color-checked: #FFFFFF;
+}
+
+sal-code-input {
+  --src-color-white: #FFFFFF;
+}
+
+sal-button {
+  --src-btn-bg-color: #141413;
+  --src-btn-text-color: #FFFFFF;
+}
+
+sal-input,
+sal-expiry-input,
+sal-cvc-input,
+sal-card-input {
+  --src-input-border-width: 2px;
+  --src-input-border-color: #E6E6E6;
+  --src-input-text-color: #141413;
+  --src-input-font-size: 1rem;
+  --src-input-border-color-filled: #9B9B9B;
+}
