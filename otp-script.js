@@ -113,7 +113,7 @@ function removeAllSettled() {
   console.log('After removal', Promise.allSettled)
 }
 
-window.addEventListener('DOMContentLoaded', e => {
+window.addEventListener('DOMContentLoaded', async e => {
   await customElements.whenDefined('src-mark')
   const mark = document.querySelector('src-mark')
   mark.cardBrands = state.cardBrands
@@ -130,15 +130,27 @@ window.addEventListener('DOMContentLoaded', e => {
   mark.addEventListener('click', init)
   masterpassButton.addEventListener('click', initMerchantJS)
   const ac = new AbortController();
-  navigator.credentials.get({
-      otp: { transport:['sms'] },
-      signal: ac.signal
-    }).then(otp => {
-      const otpInput = document.querySelector('#otp-test')
-      otpInput.value = otp.code;
-    }).catch(err => {
+  if ('OTPCredential' in window) {
+    try {
+       if (navigator.credentials) {
+          try {
+             await navigator.credentials
+               .get({ abort: signal, otp:{ transport: ['sms']}})
+               .then(content => {
+                 const otpInput = document.querySelector('#otp-test')
+                 otpInput.value = otp.code;
+               })
+               .catch(e => console.log(e));
+          } 
+          catch (e) {
+            return;
+          }
+       }
+    } 
+    catch (err) {
       console.log(err);
-    });
+    }
+  }
 })
 
 
