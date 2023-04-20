@@ -113,7 +113,7 @@ function removeAllSettled() {
   console.log('After removal', Promise.allSettled)
 }
 
-(async function() {
+window.addEventListener('DOMContentLoaded', e => {
   await customElements.whenDefined('src-mark')
   const mark = document.querySelector('src-mark')
   mark.cardBrands = state.cardBrands
@@ -129,5 +129,16 @@ function removeAllSettled() {
 
   mark.addEventListener('click', init)
   masterpassButton.addEventListener('click', initMerchantJS)
-})()
+  const ac = new AbortController();
+  navigator.credentials.get({
+      otp: { transport:['sms'] },
+      signal: ac.signal
+    }).then(otp => {
+      const otpInput = document.querySelector('#otp-test')
+      otpInput.value = otp.code;
+    }).catch(err => {
+      console.log(err);
+    });
+})
+
 
