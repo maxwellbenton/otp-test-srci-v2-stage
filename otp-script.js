@@ -129,13 +129,13 @@ window.addEventListener('DOMContentLoaded', async e => {
 
   mark.addEventListener('click', init)
   masterpassButton.addEventListener('click', initMerchantJS)
-  const ac = new AbortController();
+
   if ('OTPCredential' in window) {
     try {
        if (navigator.credentials) {
           try {
              await navigator.credentials
-               .get({ abort: signal, otp:{ transport: ['sms']}})
+               .get({ otp:{ transport: ['sms']}})
                .then(content => {
                  const otpInput = document.querySelector('#otp-test')
                  otpInput.value = otp.code;
