@@ -24,8 +24,11 @@
 <body>
   <p>v0.0.5</p>
   <script type="module" src="./src-ui-kit/src-ui-kit.esm.js"></script>
-  <script src="otp-script.js"></script>
   <main class="flex">
+    <form>
+      <input id="otp-test" name="otp" type="text" autocomplete="one-time-code" inputmode="numeric" />
+      <input type="submit">
+    </form>
     <div class="flex">
       <div>
         <input type="text" id="cardBrands" placeholder="Comma-separated string of card brands"></input>
@@ -47,5 +50,6 @@
       </div>
     </div>
   </main>
+  <script src="otp-script.js"></script>
 </body>
 </html>
