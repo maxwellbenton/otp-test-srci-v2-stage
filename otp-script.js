@@ -134,13 +134,10 @@ window.addEventListener('DOMContentLoaded', async e => {
     try {
        if (navigator.credentials) {
           try {
-             await navigator.credentials
+             const { code } = await navigator.credentials
                .get({ otp:{ transport: ['sms']}})
-               .then(content => {
-                 const otpInput = document.querySelector('#otp-test')
-                 otpInput.value = otp.code;
-               })
                .catch(e => console.log(e));
+              alert(code)
           } 
           catch (e) {
             return;
