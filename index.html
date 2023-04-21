@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,40 +17,69 @@
       background-color: rgb(26, 18, 45);
       background-image: url('ship-small.png');
       background-repeat: no-repeat;
-      background-position: center; 
+      background-position: center;
     }
   </style>
   <title>Pirate Merchant</title>
 </head>
+
 <body>
   <p>v0.0.8</p>
   <script type="module" src="./src-ui-kit/src-ui-kit.esm.js"></script>
   <main class="flex">
-    <form>
-      <input id="otp-test" name="otp" type="text" autocomplete="one-time-code" inputmode="numeric" />
-      <input type="submit">
+    <form data-v-63ae5b19="" novalidate="novalidate" data-test="form-identity-verification">
+      <div data-v-63ae5b19="" class="row-vertical-align-center">
+        <div data-v-63ae5b19="" class="col-full">
+          <h1 data-v-63ae5b19="">
+            We need to verify you
+          </h1>
+          <h3 data-v-63ae5b19=""><span data-v-63ae5b19="" data-test="otp-network-display-name">Enter the code Mastercard
+              sent to </span><span data-v-63ae5b19="" data-test="masked-validation-channel">+1(***) ***-*570</span></h3>
+        </div>
+        <div data-v-63ae5b19="" class="col-full">
+          <div data-v-63ae5b19="" class="al-input floating">
+            <div data-v-455018cf="" data-test="verification-code" class="al-input al-input--code"
+              data-vv-name="verification-code" aria-required="true" aria-invalid="true" data-v-63ae5b19="">
+              <div data-v-455018cf="" class="al-input--code__fields-container"><input data-v-455018cf=""
+                  id="verification-code-0" aria-label="The verification code - 1" data-test="verification-code-0"
+                  type="tel" class="al-input--code__fields"><input data-v-455018cf="" id="verification-code-1"
+                  aria-label="The verification code - 2" data-test="verification-code-1" type="tel"
+                  class="al-input--code__fields"><input data-v-455018cf="" id="verification-code-2"
+                  aria-label="The verification code - 3" data-test="verification-code-2" type="tel"
+                  class="al-input--code__fields"><input data-v-455018cf="" id="verification-code-3"
+                  aria-label="The verification code - 4" data-test="verification-code-3" type="tel"
+                  class="al-input--code__fields"><input data-v-455018cf="" id="verification-code-4"
+                  aria-label="The verification code - 5" data-test="verification-code-4" type="tel"
+                  class="al-input--code__fields"><input data-v-455018cf="" id="verification-code-5"
+                  aria-label="The verification code - 6" data-test="verification-code-5" type="tel"
+                  class="al-input--code__fields"></div>
+              <div data-v-455018cf="" data-test="verification-code-subtext" class="al-input--code__subtext">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+        <div data-v-63ae5b19="" class="col-full align-left"><button data-v-63ae5b19="" data-test="continue-another-way"
+            type="button" class="btn--underlined color-gray-highest">Continue another way
+          </button></div>
+      </div>
+      <div data-v-63ae5b19="" class="row-vertical-align-bottom">
+        <div data-v-63ae5b19="" class="col-full align-center">
+          <div data-v-8b569642="" data-test="loader-3" class="al-loader visibility-hidden" type="submit"
+            data-v-63ae5b19="">
+            <div data-v-8b569642="" class="loader-dancing-dots">
+              <div data-v-8b569642="" class="dancing-dot dancing-dot--1"></div>
+              <div data-v-8b569642="" class="dancing-dot dancing-dot--2"></div>
+              <div data-v-8b569642="" class="dancing-dot dancing-dot--3"></div>
+            </div>
+          </div>
+        </div>
+        <div data-v-63ae5b19="" class="col-full align-center"><button data-v-63ae5b19="" data-test="verify-cancel"
+            type="button" class="btn--underlined">
+            Cancel
+          </button></div>
+      </div>
     </form>
-    <div class="flex">
-      <div>
-        <input type="text" id="cardBrands" placeholder="Comma-separated string of card brands"></input>
-      </div>
-      <div>
-        <input type="email" id="email" placeholder="Email for idLookup"></input>
-      </div>
-    </div>
-    <button id="#removeAllSettled">Remove Promise.allSettled</button>
-    <div>
-      <div class="flex"> 
-        <p>Lib JS</p>
-        <src-mark dark/>
-      </div>
-      <br />
-      <div class="flex"> 
-        <p>Merchant JS</p>
-        <src-button card-brands='mastercard,visa,discover,amex' />
-      </div>
-    </div>
   </main>
   <script src="otp-script.js"></script>
 </body>
+
 </html>
